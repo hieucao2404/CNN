@@ -27,13 +27,13 @@ module maxpool2x2(
     input [19:0] d,
     output reg [19:0] max_out
     );
+    reg [19:0] max_ab;
+    reg [19:0] max_cd;
     
     always @(*)
     begin
-        max_out = a;
-        
-        if(b > max_out) max_out = b;
-        if(c > max_out) max_out = c;
-        if(d > max_out) max_out = d;
+        max_ab = (a > b) ? a : b;
+        max_cd = (c > d) ? c : d;
+        max_out = (max_ab > max_cd) ? max_ab : max_cd;
     end
 endmodule
